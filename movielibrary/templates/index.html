@@ -29,7 +29,7 @@
       <div class="col"><button type="button" id="search" class="btn btn-primary"><i class="fas fa-search"></i></button></div>
     </div>
 </div>
-<div class="container-fluid" style="min-height: 70vh;">
+<div class="container-fluid" style="min-height: 80vh;">
     <div class="row" id="movie_list">
     </div>
 </div>
@@ -49,9 +49,13 @@
           </div>
           <div class="modal-body">
             <div class="list-group">
+                {%if fav_list%}
                 {%for obj in fav_list%}
                 <button type="button" id="select_list" onclick="ex('{{obj.name}}')" value="{{obj.name}}" class="list-group-item list-group-item-action"><b>{{obj.name}}</b><small><em>({{obj.isprivate}})</em></small></button>
                 {%endfor%}
+                {%else%}
+                <button type="button" id="select_list" class="list-group-item list-group-item-action"><a href="/MyFavorites">Please Create a Favorite List on My Favourites</a></button>
+                {%endif%}
               </div>
             
           </div>

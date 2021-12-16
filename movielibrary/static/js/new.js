@@ -22,13 +22,17 @@ function movieListApiCall(pagenum) {
     if (typer != undefined) {
       api_obj['type'] = typer;
     }
-    console.log(api_obj);
+    // console.log(api_obj);
     fetch('http://www.omdbapi.com/?' + new URLSearchParams(api_obj)).then(response => response.json())
-      .then(data => data.Search.forEach(element => {
-        document.getElementById('movie_list').innerHTML += `<div class="col-lg-3 mb-4 mt-2">
-    <div class="card" onclick="showMoreInfo('${element.imdbID}')">
+      .then(data => {
+
+        console.log(data);
+        if (data.Response == "True") {
+          data.Search.forEach(element => {
+            document.getElementById('movie_list').innerHTML += `<div class="col-lg-3 mb-4 mt-2">
+    <div class="card">
         <img class="card-img-top" width="100" height="400" src="${element.Poster}" alt="Image Not Loading">
-        <div class="card-body">
+        <div class="card-body" onclick="showMoreInfo('${element.imdbID}')">
             <h5 class="card-title">${element.Title}</h5>
             <ul class="list-group list-group-flush">
             <li class="list-group-item"><b>IMDb ID</b> : ${element.imdbID}</li>
@@ -43,7 +47,12 @@ function movieListApiCall(pagenum) {
         
     </div>
 </div>`
-      }));
+          })
+        }
+        else {
+          alert("Error : " + data.Error)
+        }
+      });
   })
 
 }

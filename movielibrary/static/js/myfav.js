@@ -39,6 +39,7 @@ document.getElementById('add').addEventListener('click', () => {
             console.log(result);
             $('#addmodel').modal('hide')
             alert(result.message);
+            window.location = window.location.href + "?eraseCache=true";
         },
         error: function (error_data) {
             console.log("error");
