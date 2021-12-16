@@ -79,14 +79,20 @@ WSGI_APPLICATION = 'movielibrary.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'movielib',
+#         'USER': 'root',
+#         'PASSWORD': '1234',
+#         'PORT': 3306,
+#         'HOST': 'localhost',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'movielib',
-        'USER': 'root',
-        'PASSWORD': '1234',
-        'PORT': 3306,
-        'HOST': 'localhost',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
